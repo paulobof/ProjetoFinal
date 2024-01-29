@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página do Dashboard</title>
+    <!-- Adicione o link para o Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Dashboard</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Links para as Rotas -->
+                        <div class="text-center mb-3">
+                            <a href="#" class="btn btn-primary" onclick="handleLinkClick(event, '/registerProduct', 'GET'); return false;">Registrar Produto</a>
+                            <a href="#" class="btn btn-success ml-2" onclick="handleLinkClick(event, '/productss', 'GET'); return false;">Produtos</a>
+                        </div>
+
+                        <!-- Botão de Logout -->
+                        <div class="text-center">
+                            <a href="#" class="btn btn-danger" onclick="handleLogout(); return false;">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../public/js/linkClickHandler.js"></script>
+</body>
+
+</html>
