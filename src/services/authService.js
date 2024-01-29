@@ -1,13 +1,13 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
 
+dotenv.config();
 
-function login(email, password){
-    const { EMAIL, PASSWORD } = process.env;    
-    
-    if(email === EMAIL && password === PASSWORD){
-                
+function login(email, password) {
+    const { EMAIL, PASSWORD } = process.env;
+
+    if (email === EMAIL && password === PASSWORD) {
         console.log('Login bem-sucedido!');
 
         const jwtToken = generateAccessToken({ email: email });
@@ -20,7 +20,6 @@ function login(email, password){
         const cookieSerialized = cookie.serialize('jwtToken', jwtToken, cookieOptions);
 
         return cookieSerialized;
-
     } else {
         console.log('Erro no login!');
         return null;
@@ -54,5 +53,4 @@ function logout(req, res) {
     res.json({ success: true });
 }
 
-
-module.exports = {login, logout};
+module.exports = { login, logout };

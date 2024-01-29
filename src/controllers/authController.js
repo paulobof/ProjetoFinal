@@ -1,27 +1,33 @@
 const express = require('express');
 const router = express.Router();
-require('dotenv').config();
+const dotenv = require('dotenv');
 const authService = require('../services/authService');
 
-router.get('/', (req, res, next) => {
+dotenv.config();
+
+router.get('/', (req, res) => {
     res.render('login.ejs');
 });
 
-router.post('/login', (req, res, next) => {    
-    const {email, password} = req.body;    
+router.post('/login', async (req, res) => {    
+    const { email, password } = req.body;
 
-    let cookieString = authService.login(email, password);
+    try {
+        const cookieString = await authService.login(email, password);
 
-    if(cookieString == null){
-        return res.redirect('/');
-    } else {
+        if (!cookieString) {
+            return res.redirect('/');
+        }
+
         res.setHeader('Set-Cookie', cookieString);
         res.redirect('/user/menu');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
     }
-
 });
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', (req, res) => {
     authService.logout(req, res);
 });
 
