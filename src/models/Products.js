@@ -1,4 +1,4 @@
-class User{
+class Product{
     constructor(
         name,
         type,
@@ -35,4 +35,4 @@ class User{
 
 }
 
-module.exports = User
+module.exports = Product
