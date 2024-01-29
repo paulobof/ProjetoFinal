@@ -1,5 +1,6 @@
 const productService = require('../services/productService');
 
+// Cria um novo produto
 async function createProduct(req, res) {
     try {
         const product = await productService.createProduct(req.body);
@@ -10,6 +11,7 @@ async function createProduct(req, res) {
     }
 }
 
+// Obtém todos os produtos
 async function getProducts(req, res) {
     try {
         const products = await productService.getProducts();
@@ -20,6 +22,7 @@ async function getProducts(req, res) {
     }
 }
 
+// Obtém um produto pelo ID
 async function getProductById(req, res) {
     try {
         const productId = req.params.id;
@@ -36,6 +39,7 @@ async function getProductById(req, res) {
     }
 }
 
+// Deleta um produto pelo ID
 async function deleteProduct(req, res) {
     try {
         const productId = req.params.id;
@@ -52,6 +56,7 @@ async function deleteProduct(req, res) {
     }
 }
 
+// Atualiza um produto pelo ID
 async function updateProduct(req, res) {
     try {
         const productId = req.params.id;
@@ -68,6 +73,7 @@ async function updateProduct(req, res) {
     }
 }
 
+// Exporta as funções do controlador
 module.exports = {
     createProduct,
     getProducts,
