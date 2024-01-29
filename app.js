@@ -1,13 +1,15 @@
 const express = require('express');
+const db = require('./src/db/dbConfig');
 const createError = require('http-errors');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const authController = require('./src/controllers/authController');
 const userController = require('./src/controllers/userController');
+//const productController = require('./src/controllers/productController');
 const { authenticateToken } = require('./src/middlewares/authMiddleware');
 require('dotenv').config();
-
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.set('views', path.join(__dirname, './src/views'));
@@ -20,11 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 
-// app.use(express.static(path.join(__dirname, './src/public')));
 app.use(authenticateToken);
 
 app.use('/', authController);
 app.use('/user', userController);
+//app.use('/products', productController);
 
 app.use(function(req, res, next) {
     next(createError(404));
@@ -39,9 +41,8 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });  
 
-const port = process.env.PORT;
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}/`);
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}/`);
 });
   
 module.exports = app;
