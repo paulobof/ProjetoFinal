@@ -34,3 +34,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas (issue
 
 ## Licença
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+## PostMan
+[Link para o Postman](https://www.postman.com/lively-moon-837353/workspace/ada/folder/18751134-47de368b-db70-4ba9-9d60-edd83c3e1ea4?action=share&creator=18751134&ctx=documentation)
+
