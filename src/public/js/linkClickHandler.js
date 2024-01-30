@@ -1,23 +1,28 @@
-function handleLinkClick(event, endpoint, method) {
+async function handleLinkClick(event, endpoint, method) {
     event.preventDefault();
 
-    fetch(endpoint, {
+    await fetch(endpoint, {
         method: method,
-        credentials: 'include',
+        credentials: 'include'
     })
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('text/html')) {            
+            window.location.href = endpoint;
+        } else {
+            return response.text();
+        }
     })    
     .catch(error => {
         console.error('Request error:', error);
     });
 }
 
-function handleLogout() {
-    fetch('/logout', { method: 'POST' })
+async function handleLogout() {
+    await fetch('/logout', { method: 'POST' })
         .then(response => {
             if (response.ok) {
                 return response.json();

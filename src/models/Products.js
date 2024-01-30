@@ -1,32 +1,32 @@
 class Product{
     constructor(
         name,
+        brand,
+        price,
         type,
-        model,
-        description,
         picture
     ){
         this.name = name,
+        this.brand = brand,
+        this.price = price,
         this.type = type,
-        this.model = model,
-        this.description = description,
         this.picture = picture        
     }
 
     getName(){
         return this.name;
     }
+    
+    getBrand(){
+        return this.brand;
+    }
+
+    getPrice(){
+        return this.price;
+    }
 
     getType(){
         return this.type;
-    }
-
-    getModel(){
-        return this.model;
-    }
-
-    getDescription(){
-        return this.description;
     }
 
     getPicture(){

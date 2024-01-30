@@ -1,5 +1,9 @@
 const productService = require('../services/productService');
 
+function renderRegisterProductPage(req, res){
+    res.render('productRegister.ejs');
+}
+
 // Cria um novo produto
 async function createProduct(req, res) {
     try {
@@ -75,6 +79,7 @@ async function updateProduct(req, res) {
 
 // Exporta as funções do controlador
 module.exports = {
+    renderRegisterProductPage,
     createProduct,
     getProducts,
     getProductById,

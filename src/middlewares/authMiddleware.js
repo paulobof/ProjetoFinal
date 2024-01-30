@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
-    const publicRoutes = ['/', '/login', '/userRegistration'];
+    const publicRoutes = ['/', '/login', '/user/userRegistration', '/logout'];
 
     console.log('Request Path:', req.path);
 
-    if (publicRoutes.includes(req.path)) {
+    if (publicRoutes.includes(req.path) || publicRoutes.some(route => req.path.startsWith(route))) {
         console.log('Public route. Skipping authentication.');
         return next();
     }
@@ -29,4 +29,4 @@ function authenticateToken(req, res, next) {
     });
 }
 
-module.exports = { authenticateToken };
+module.exports =  {authenticateToken} ;

@@ -5,7 +5,7 @@ async function renderMenuPage(req, res, next) {
 }
 
 async function renderUserRegistrationPage(req, res, next) {
-    res.render('userRegister.ejs');
+    res.render('userRegister.ejs'); 
 }
 
 async function handleUserRegistration(req, res, next) {

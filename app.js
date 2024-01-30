@@ -5,25 +5,17 @@ const db = require('./src/db/dbConfig');
 
 const createError = require('http-errors');
 const logger = require('morgan');
-
-const authController = require('./src/controllers/authController');
-const userController = require('./src/controllers/userController');
-const productController = require('./src/controllers/productController');
-
+const authRoutes = require('./src/routes/authRoutes.js');
+const userRoutes = require('./src/routes/userRoutes.js');
+const productRoutes = require('./src/routes/productRoutes.js');
 const cookieParser = require('cookie-parser');
-
-const authenticateToken  = require('./src/middlewares/authMiddleware.js');
-
+const { authenticateToken } = require('./src/middlewares/authMiddleware.js');
 require('dotenv').config();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const app = express();
 
 // Log para verificar se o arquivo é carregado corretamente
 console.log('Starting the application...');
-
-// Middleware para cookies
-app.use(cookieParser());
-console.log('Middleware cookieParser applied.');
 
 // Configurações do aplicativo
 app.set('views', path.join(__dirname, './src/views'));
@@ -40,15 +32,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 console.log('Body parsers configured.');
 
+// Middleware para cookies
+app.use(cookieParser());
+console.log('Middleware cookieParser applied.');
 
 // Middleware de autenticação
 app.use(authenticateToken);
 console.log('Middleware authenticateToken applied.');
 
 // Rotas
-app.use('/', authController);
-app.use('/user', userController);
-app.use('/products', productController);
+app.use('/', authRoutes);
+app.use('/user', userRoutes);
+app.use('/products', productRoutes);
 console.log('Routers configured.');
 
 // Tratamento de erro para rota não encontrada

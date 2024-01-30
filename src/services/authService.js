@@ -30,6 +30,7 @@ function generateAccessToken(email) {
     return jwt.sign(email, process.env.TOKEN_SECRET, { expiresIn: '10800s' });
 }
 
+
 function logout(req, res) {
     const { cookies } = req;
     const jwt = cookies.jwtToken;
